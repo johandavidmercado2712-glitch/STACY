@@ -1,0 +1,77 @@
+---
+interface Props {
+  title?: string;
+}
+const { title = 'STACY - Historial de Comandos' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es" data-theme>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content="STACY es una extensión para VS Code que guarda y sincroniza tu historial de comandos de terminal. Accede, organiza y busca tus comandos desde cualquier dispositivo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:," />
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface-hover: #1c2333;
+      --text: #e6edf3;
+      --text-secondary: #8b949e;
+      --accent: #f59e0b;
+      --accent-hover: #fbbf24;
+      --accent-dim: rgba(245, 158, 11, 0.12);
+      --border: #30363d;
+      --danger: #f85149;
+      --success: #3fb950;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-lg: 16px;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --transition: 180ms ease;
+    }
+
+    [data-theme="light"] {
+      --bg: #f7f6f3;
+      --surface: #ffffff;
+      --surface-hover: #f0efea;
+      --text: #1b1b1b;
+      --text-secondary: #6b7280;
+      --accent: #d97706;
+      --accent-hover: #b45309;
+      --accent-dim: rgba(217, 119, 6, 0.1);
+      --border: #e5e7eb;
+      --shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+    a:hover { opacity: 0.8; }
+    img { max-width: 100%; }
+  </style>
+  <script>
+    (function() {
+      const saved = localStorage.getItem("stacy_theme");
+      const prefers = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", saved || prefers);
+    })();
+  </script>
+</head>
+<body>
+  <slot />
+</body>
+</html>
